@@ -1,5 +1,5 @@
 # coding=utf-8
-"""DuckDuckGo Web Browsing feature tests."""
+"""Failover RDS instance feature tests."""
 
 from pytest_bdd import (
     given,
@@ -8,29 +8,28 @@ from pytest_bdd import (
     when,
 )
 
+from src.rds.rds_failover import fail_over_rds_instance
 
-@scenario('../features/rds_failover.feature', 'Basic DuckDuckGo Search')
-def test_basic_duckduckgo_search():
-    """Basic DuckDuckGo Search."""
+@scenario('../features/rds_failover.feature', 'Failing over RDS instance')
+def test_failing_over_rds_instance():
+    """Failing over RDS instance."""
 
 
-@given('the DuckDuckGo home page is displayed')
-def the_duckduckgo_home_page_is_displayed():
-    """the DuckDuckGo home page is displayed."""
-    print("the DuckDuckGo home page is displayed: ")
+@given('the RDS instance "<id>" to failover')
+def the_rds_instance_id_to_failover(id):
+    """the RDS instance "<id>" to failover."""
+    fail_over_rds_instance(id)
     pass
 
 
-@when('the user searches for "panda"')
-def the_user_searches_for_panda():
-    """the user searches for "panda"."""
-    print("the DuckDuckGo home page is displayed")
+@when('the RDS instance is at')
+def the_rds_instance_is_at():
+    """the RDS instance is at."""
     pass
 
 
-@then('results are shown for "panda"')
-def results_are_shown_for_panda():
-    """results are shown for "panda"."""
-    print("the DuckDuckGo home page is displayed")
+@then('Failing over RDS instance')
+def failing_over_rds_instance():
+    """Failing over RDS instance."""
     pass
 

@@ -1,14 +1,20 @@
 @rds @failover
-Feature: DuckDuckGo Web Browsing
-  As a web surfer,
-  I want to find information online,
-  So I can learn new things and get tasks done.
+Feature: Failover RDS instance
+  I want to exercise RDS failover using BDD
 
   # The "@" annotations are tags
   # One feature can have multiple scenarios
   # The lines immediately after the feature title are just comments
 
-  Scenario: Basic DuckDuckGo Search
-    Given the DuckDuckGo home page is displayed
-    When the user searches for "panda"
-    Then results are shown for "panda"
+  Scenario: Failing over RDS instance
+    Given the RDS instance "<id>" to failover
+    When the RDS instance is at
+    Then Failing over RDS instance
+
+    Examples: RDS instances
+      | id              |
+      | rds_test_id_0   |
+      | rds_test_id_1   |
+      | rds_test_id_2   |
+      | rds_test_id_3   |
+
