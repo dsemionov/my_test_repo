@@ -3,3 +3,8 @@ __pycache__
 .project
 .pydevproject
 .settings/
+.coverage
+.git
+.github
+.idea
+.pytest_cache
