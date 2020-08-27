@@ -8,3 +8,4 @@ __pycache__
 .github
 .idea
 .pytest_cache
+documentation/
