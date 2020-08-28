@@ -49,7 +49,7 @@ jobs:
    #deploy:
    # runs-on: ubuntu-latest
    #  steps:
-    - uses: actions/checkout@master
+   # - uses: actions/checkout@master
     - name: Upload file to bucket
       uses: zdurham/s3-upload-github-action@master
       with:
