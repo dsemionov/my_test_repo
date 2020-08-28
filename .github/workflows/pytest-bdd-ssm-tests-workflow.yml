@@ -50,7 +50,7 @@ jobs:
    # runs-on: ubuntu-latest
    #  steps:
    # - uses: actions/checkout@master
-    - name: Upload file to bucket
+    - name: Upload coverage report to S3
       run: | 
         mkdir -p ~/.aws
 
@@ -61,6 +61,8 @@ jobs:
         aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/credentials
 
         aws s3 cp ./documentation/coverage/ s3://semiond-report-bucket/ --region us-west-2 --recursive
+        
+        echo "To open coverage report please visit following URL:  http://semiond-report-bucket.s3-website-us-west-2.amazonaws.com"
 
         rm -rf ~/.aws
 
