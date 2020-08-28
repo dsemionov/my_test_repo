@@ -51,16 +51,32 @@ jobs:
    #  steps:
    # - uses: actions/checkout@master
     - name: Upload file to bucket
-      uses: zdurham/s3-upload-github-action@master
-      with:
-        args: --acl public-read
-      env:
-        FILE: documentation/coverage/index.html
-        AWS_REGION: 'us-west-2'
-        S3_BUCKET: 'semiond-report-bucket'
-        S3_KEY: 'report'
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: | 
+        mkdir -p ~/.aws
+
+        touch ~/.aws/credentials
+
+        echo "[default]
+        aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/credentials
+        
+        echo "Print creds..."
+        cat ~/.aws/credentials
+
+        aws s3 cp ./documentation/coverage/index.html s3://semiond-report-bucket/ --region us-west-2
+
+        rm -rf ~/.aws
+
+      #uses: zdurham/s3-upload-github-action@master
+      #with:
+       # args: --acl public-read
+      #env:
+      #  FILE: documentation/coverage/index.html
+      #  AWS_REGION: 'us-west-2'
+      #  S3_BUCKET: 'semiond-report-bucket'
+      #  S3_KEY: 'report'
+      #  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     #- uses: actions/checkout@master
     #- uses: jakejarvis/s3-sync-action@master
     #  with:
