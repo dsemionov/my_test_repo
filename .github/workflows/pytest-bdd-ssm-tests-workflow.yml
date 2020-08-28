@@ -61,8 +61,11 @@ jobs:
         aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/credentials
 
         aws s3 cp ./documentation/coverage/ s3://semiond-report-bucket/ --region us-west-2 --recursive
-        
-        echo "To open coverage report please visit following URL:  http://semiond-report-bucket.s3-website-us-west-2.amazonaws.com"
+        echo "====================== Coverage Report ========================"
+        echo " "
+        echo "http://semiond-report-bucket.s3-website-us-west-2.amazonaws.com"
+        echo " "
+        echo "==============================================================="
 
         rm -rf ~/.aws
 
